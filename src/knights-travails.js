@@ -1,6 +1,4 @@
-console.log(possibleMoves([3, 3]));
-console.log(possibleMoves([1,2]));
-console.log(knightMoves([[3, 3]], [0, 0]));
+// console.log(knightMoves([[0, 0]], [7, 7]));
 
 function possibleMoves(from) {
   let possibleTos = [];
@@ -39,18 +37,43 @@ function possibleMoves(from) {
   return possibleTos;
 }
 
-function knightMoves(from, to) {
-	const possibleTos = possibleMoves(from[from.length - 1]);
+function isInNextMove(from, to) {
+  const possibleTos = possibleMoves(from[from.length - 1]);
   for (let i = 0; i < possibleTos.length; i++) {
     if (possibleTos[i][0] === to[0] && possibleTos[i][1] === to[1]) {
       from.push(to);
       return from;
     }
-	}
-	
-  for (let i = 0; i < possibleTos.length; i++) {
-		let moveFrom = [...from];
-		moveFrom.push(possibleTos[i]);
-    return knightMoves(moveFrom, to);
+  }
+  return null;
+  // for (let i = 0; i < possibleTos.length; i++) {
+  // 	from.push(possibleTos[i]);
+  // 	console.log(from);
+  //   return knightMoves(from, to);
+  // }
+}
+
+function knightMoves(from, to) {
+  let isIt = isInNextMove(from, to);
+  if (isIt) {
+    return isIt;
+  } else {
+    let deepperPossibleMoves = possibleMoves(from[from.length - 1]);
+
+    for (let i = 0; i < deepperPossibleMoves.length; i++) {
+      const isItDeepper = isInNextMove([deepperPossibleMoves[i]], to);
+      if (isItDeepper) {
+        return [from[from.length - 1], ...isItDeepper];
+      }
+    }
+    for (let i = 0; i < deepperPossibleMoves.length; i++) {
+      const isItDeepper = isInNextMove([deepperPossibleMoves[i]], to);
+      return [
+        from[from.length - 1],
+        ...knightMoves([deepperPossibleMoves[i]], to)
+      ];
+    }
   }
 }
+
+export { possibleMoves, isInNextMove, knightMoves };
