@@ -1,16 +1,35 @@
 html {
-  background-color: black;
+	background-color: black;
+}
+
+body {
+	display: flex;
+	flex-direction: column;
+	justify-items: center;
+	align-items: center;
+}
+
+@keyframes marcosclave {
+	from {
+		opacity: 0.5;
+	}
+	to {
+		opacity: 1;
+	}
 }
 
 h1 {
-  color: orangered;
+	text-align: center;
+	color: orangered;
+	text-shadow: 0 0 0.5rem violet;
+	animation: marcosclave 2s linear 0s infinite alternate;
 }
 
 .board {
-  display: grid;
+	width: 85vmin;
+	display: grid;
   grid-template-columns: repeat(8, 1fr);
   grid-template-rows: repeat(8, 1fr);
-  /* grid-gap: 0.3rem; */
 }
 
 .board div {
