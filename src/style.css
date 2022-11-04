@@ -1,15 +1,50 @@
 html {
-	background-color: black;
+  background-color: black;
 }
 
 h1 {
-	color: orangered;
+  color: orangered;
 }
 
 .board {
-	display: grid;
-	grid-template-columns: repeat(8, 1fr);
-	grid-template-rows: repeat(8, 1fr);
+  display: grid;
+  grid-template-columns: repeat(8, 1fr);
+  grid-template-rows: repeat(8, 1fr);
+  /* grid-gap: 0.3rem; */
+}
 
-	color: royalblue;
+.board div {
+  aspect-ratio: 1;
+  border-style: solid;
+  border-radius: 0.4rem;
+  border-width: 0;
+  color: black;
+  align-items: center;
+
+  display: flex;
+  justify-content: center;
+}
+
+.board div img {
+  position: relative;
+  height: 90%;
+}
+
+.board .white {
+  background-color: rgb(128, 64, 255);
+  box-shadow: 0 0 0.5rem black inset;
+}
+
+.board .black {
+  background-color: rgb(64, 0, 128);
+  box-shadow: 0 0 0.5rem black inset;
+}
+
+.board .horse {
+  background-image: url(./horse.svg);
+  background-size: 100%;
+  background-repeat: no-repeat;
+  background-position: center;
+  color: orangered;
+  font-size: 1.5rem;
 }
